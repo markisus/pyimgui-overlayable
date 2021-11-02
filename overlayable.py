@@ -72,6 +72,11 @@ def overlay_transform(overlayable, x, y):
     sy = overlayable.scale * y + overlayable.corner_y
     return sx, sy
 
+def overlay_inv_transform(overlayable, sx, sy):
+    x = (sx - overlayable.corner_x) / overlayable.scale
+    y = (sy - overlayable.corner_y) / overlayable.scale
+    return x, y
+
 def is_oob(overlayable, x, y):
     if x <= 0:
         return True
