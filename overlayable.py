@@ -119,3 +119,28 @@ def overlay_text(overlayable, x, y, color, text):
     
     sx, sy = overlay_transform(overlayable, x, y)
     imgui.get_window_draw_list().add_text(sx, sy, color, text)
+    
+def overlay_polyline(overlayable, polyline, colors, thickness):
+    for i in range(polyline.shape[1]):
+        ni = (i + 1) % polyline.shape[1]
+        overlay_line(overlayable,
+                     polyline[0,i],
+                     polyline[1,i],
+                     polyline[0,ni],
+                     polyline[1,ni],
+                     colors[i % len(colors)],
+                     thickness)
+
+def overlay_line_list(overlayable, line_list, colors, thickness):
+    for i in range(int(line_list.shape[1]/2)):
+        p = 2*i
+        np = 2*i + 1
+        overlay_line(overlayable,
+                     line_list[0,p],
+                     line_list[1,p],
+                     line_list[0,np],
+                     line_list[1,np],
+                     colors[i % len(colors)],
+                     thickness)
+ 
+
